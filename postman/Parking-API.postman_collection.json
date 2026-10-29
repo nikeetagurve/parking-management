@@ -1,0 +1,113 @@
+{
+  "info": {
+    "name": "Parking Management API",
+    "description": "Requests for the Full Stack-II CA2 parking API. Create slots before booking.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "slotId",
+      "value": "1"
+    },
+    {
+      "key": "bookingId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Create slot",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"slotCode\": \"A-01\"\n}"
+        },
+        "url": "{{baseUrl}}/api/slots"
+      }
+    },
+    {
+      "name": "All slots",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/slots"
+      }
+    },
+    {
+      "name": "Available slots",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/slots/available"
+      }
+    },
+    {
+      "name": "Book vehicle",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"vehicleNumber\": \"MH31AB1234\",\n  \"slotId\": 1\n}"
+        },
+        "url": "{{baseUrl}}/api/bookings"
+      }
+    },
+    {
+      "name": "Active bookings",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/bookings/active"
+      }
+    },
+    {
+      "name": "Booking detail",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}"
+      }
+    },
+    {
+      "name": "Current fare",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}/fare"
+      }
+    },
+    {
+      "name": "Checkout",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}/checkout"
+      }
+    },
+    {
+      "name": "Revenue for date",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reports/revenue?date=2026-10-29"
+      }
+    }
+  ]
+}
